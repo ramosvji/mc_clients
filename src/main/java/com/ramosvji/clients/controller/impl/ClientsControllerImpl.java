@@ -53,8 +53,10 @@ public class ClientsControllerImpl implements ClientsController{
 	@Override
 	@GetMapping(path="/v01/clients/{username}")
 	public ResponseEntity<ClientWithPasswordDtoResponse> getPasswordByName(final @PathVariable String username) {
-		// TODO Auto-generated method stub
-		return null;
+		ClientIntDtoResponse clientResponse = service.getClientByUsername(username);
+		ClientWithPasswordDtoResponse response = modelMapper.map(clientResponse, ClientWithPasswordDtoResponse.class);
+		
+		return new ResponseEntity<ClientWithPasswordDtoResponse>(response, new HttpHeaders(), HttpStatus.OK);
 	}
 
 	@Override

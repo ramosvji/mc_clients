@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ramosvji.clients.config.ConfigSecurity;
 import com.ramosvji.clients.entity.Client;
 import com.ramosvji.clients.repository.ClientsRepository;
 import com.ramosvji.clients.service.ClientsService;
@@ -18,10 +19,18 @@ public class ClientsServiceImpl implements ClientsService {
 	
 	@Autowired
 	private ClientsRepository repository;
+	
+	@Autowired
+	private ConfigSecurity configSecurity;
 
 	@Override
 	public ClientIntDtoResponse save(ClientIntDtoRequest request) {
 		Client client =  modelMapper.map(request, Client.class);
+		
+		if(client != null ) {
+			final String passwordEncoded = configSecurity.encode(client.getPassword());
+			client.setPassword(passwordEncoded);
+		}
 		
 		client = repository.save(client);
 		ClientIntDtoResponse clientResponse = modelMapper.map(client, ClientIntDtoResponse.class);
