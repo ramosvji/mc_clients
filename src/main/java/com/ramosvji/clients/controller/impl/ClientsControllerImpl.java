@@ -2,6 +2,8 @@ package com.ramosvji.clients.controller.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,10 @@ import com.ramosvji.clients.service.dto.ClientIntDtoResponse;
 
 @RestController
 @RequestMapping(path="/ramosvji/api/clients")
-public class ClientsControllerImpl implements ClientsController{
+public class ClientsControllerImpl implements ClientsController {
+	
+	@Autowired
+	Environment environment;
 	
 	@Autowired
     private ModelMapper modelMapper;
@@ -40,7 +45,12 @@ public class ClientsControllerImpl implements ClientsController{
 		
 		ClientDtoResponse response = modelMapper.map(clientResponse, ClientDtoResponse.class);
 		
-		return new ResponseEntity<ClientDtoResponse>(response, new HttpHeaders(), HttpStatus.OK);
+		HttpHeaders header = new HttpHeaders();
+		String uri = "/ramosvji/api/clients/v01/clients/" + response.getId();
+		
+		header.set("Location", uri);
+		
+		return new ResponseEntity<ClientDtoResponse>(response, header, HttpStatus.CREATED);
 	}
 
 	@Override
@@ -53,8 +63,10 @@ public class ClientsControllerImpl implements ClientsController{
 	@Override
 	@GetMapping(path="/v01/clients/{username}")
 	public ResponseEntity<ClientWithPasswordDtoResponse> getPasswordByName(final @PathVariable String username) {
-		ClientIntDtoResponse clientResponse = service.getClientByUsername(username);
+		ClientIntDtoResponse clientResponse = service.getClientByUsername(username);		
+		
 		ClientWithPasswordDtoResponse response = modelMapper.map(clientResponse, ClientWithPasswordDtoResponse.class);
+		System.out.println("puerto " + environment.getProperty("local.server.port"));
 		
 		return new ResponseEntity<ClientWithPasswordDtoResponse>(response, new HttpHeaders(), HttpStatus.OK);
 	}

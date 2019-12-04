@@ -11,6 +11,7 @@ public class ClientDtoRequest implements Serializable {
 	private Boolean enable;
 	private String username;
 	private String password;
+	
 	private List<RoleDto> roles;
 	
 	public String getName() {

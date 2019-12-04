@@ -3,6 +3,7 @@ package com.ramosvji.clients.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ramosvji.clients.config.ConfigSecurity;
 import com.ramosvji.clients.entity.Client;
@@ -12,6 +13,7 @@ import com.ramosvji.clients.service.dto.ClientIntDtoRequest;
 import com.ramosvji.clients.service.dto.ClientIntDtoResponse;
 
 @Service
+@Transactional
 public class ClientsServiceImpl implements ClientsService {
 	
 	@Autowired
