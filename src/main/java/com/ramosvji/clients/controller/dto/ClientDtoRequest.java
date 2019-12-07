@@ -3,13 +3,20 @@ package com.ramosvji.clients.controller.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 public class ClientDtoRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@NotBlank(message="Name must not be null or empty")
 	private String name;
+	@NotEmpty(message="Lastname must not be null or empty")
 	private String lastname;
 	private Boolean enable;
+	@NotBlank(message="Usernmae must not be null or empty")
 	private String username;
+	@NotBlank(message="Password must not be null or empty")
 	private String password;
 	
 	private List<RoleDto> roles;

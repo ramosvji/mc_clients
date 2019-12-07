@@ -25,6 +25,6 @@ public interface ClientsController {
 	public ResponseEntity<ClientWithPasswordDtoResponse> getPasswordByName(final @PathVariable("username") String username);
 	
 	@DeleteMapping(path="/v01/clients/{username}")
-	public ResponseEntity<ClientDtoRequest> delete(final @PathVariable("username") String username);
+	public ResponseEntity<Void> delete(final @PathVariable("username") String username);
 
 }

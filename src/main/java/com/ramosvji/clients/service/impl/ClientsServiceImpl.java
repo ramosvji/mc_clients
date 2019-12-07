@@ -50,7 +50,7 @@ public class ClientsServiceImpl implements ClientsService {
 
 	@Override
 	public void delete(String username) {
-		
+		repository.deleteByUsername(username);
 	}
 
 }

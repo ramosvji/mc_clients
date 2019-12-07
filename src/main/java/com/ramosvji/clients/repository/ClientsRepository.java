@@ -9,5 +9,7 @@ import com.ramosvji.clients.entity.Client;
 public interface ClientsRepository extends MongoRepository<Client,String>{
 	
 	public Client findByUsername(final String username);
+	
+	public void deleteByUsername(final String username);
 
 }
