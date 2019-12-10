@@ -4,19 +4,18 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 public class ClientDtoRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@NotBlank(message="Name must not be null or empty")
+	@NotBlank(message="{exception.name}")
 	private String name;
-	@NotEmpty(message="Lastname must not be null or empty")
+	@NotBlank(message="{exception.lastname}")
 	private String lastname;
 	private Boolean enable;
-	@NotBlank(message="Usernmae must not be null or empty")
+	@NotBlank(message="{exception.username}")
 	private String username;
-	@NotBlank(message="Password must not be null or empty")
+	@NotBlank(message="{exception.password}")
 	private String password;
 	
 	private List<RoleDto> roles;

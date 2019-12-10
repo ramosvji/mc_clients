@@ -2,7 +2,10 @@ package com.ramosvji.clients.advice;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,10 +21,14 @@ import com.ramosvji.clients.advice.dto.SourceNotFoundDto;
 @ControllerAdvice
 public class ClientsControllerAdvice {
 	
+	@Autowired
+	MessageSource messageSource;
+	
 	@ResponseBody
 	@ExceptionHandler({MethodArgumentNotValidException.class})
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public BadRequestResponse getBadRequestResponse(MethodArgumentNotValidException e) {
+		System.out.println("hola "+ Locale.getDefault());
 		BadRequestResponse response = new BadRequestResponse(); 
 		List<MessageDto> messages = new ArrayList<MessageDto>();
 	

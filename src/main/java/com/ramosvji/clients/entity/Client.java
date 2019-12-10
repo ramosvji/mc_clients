@@ -67,4 +67,10 @@ public class Client {
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;
 	}
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", name=" + name + ", lastname=" + lastname + ", username=" + username + ", email="
+				+ email + ", enable=" + enable + ", password=" + password + ", roles=" + roles + "]";
+	}
+	
 }

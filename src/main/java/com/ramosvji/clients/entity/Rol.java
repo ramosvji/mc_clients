@@ -20,5 +20,8 @@ public class Rol implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+	@Override
+	public String toString() {
+		return "Rol [name=" + name + ", description=" + description + "]";
+	}
 }
