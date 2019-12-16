@@ -21,40 +21,41 @@ public class McClientsApplication implements WebMvcConfigurer {
 		SpringApplication.run(McClientsApplication.class, args);
 	}
 	
-	 @Bean
-	    public MessageSource messageSource() {
-	        ReloadableResourceBundleMessageSource messageSource= new ReloadableResourceBundleMessageSource();
-	        messageSource.setBasename("classpath:messages");
-	        messageSource.setDefaultEncoding("UTF-8");
-	        return messageSource;
-	    }
 
-	    @Bean
-	    public LocalValidatorFactoryBean validator(MessageSource messageSource) {
-	        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-	        bean.setValidationMessageSource(messageSource);
-	        return bean;
-	    }
+	@Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource= new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
+    }
 
-	    @Bean
-	    public LocaleResolver localeResolver(){
-	        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-	        
-	        Locale local = new Locale("es","ES");
-	        localeResolver.setDefaultLocale(local);
-	        return  localeResolver;
-	    }
+    @Bean
+    public LocalValidatorFactoryBean validator(MessageSource messageSource) {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(messageSource);
+        return bean;
+    }
 
-	    @Bean
-	    public LocaleChangeInterceptor localeChangeInterceptor() {
-	        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-	        localeChangeInterceptor.setParamName("lang");
-	        return localeChangeInterceptor;
-	    }
+    @Bean
+    public LocaleResolver localeResolver(){
+        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        
+        Locale local = new Locale("en","US");
+        localeResolver.setDefaultLocale(local);
+        return  localeResolver;
+    }
 
-	    @Override
-	    public void addInterceptors(InterceptorRegistry registry){
-	        registry.addInterceptor(localeChangeInterceptor());
-	    }
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        localeChangeInterceptor.setParamName("lang");
+        return localeChangeInterceptor;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry){
+        registry.addInterceptor(localeChangeInterceptor());
+    }
 	
 }

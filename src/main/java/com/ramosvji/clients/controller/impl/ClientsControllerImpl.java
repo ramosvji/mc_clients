@@ -1,6 +1,5 @@
 package com.ramosvji.clients.controller.impl;
 
-import java.util.Locale;
 import java.util.function.Function;
 
 import org.modelmapper.ModelMapper;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,8 +46,7 @@ public class ClientsControllerImpl implements ClientsController {
 
 	@Override
 	@PostMapping(path="/v01/clients/")
-	public ResponseEntity<ClientDtoResponse> saveWithPassword(final @RequestHeader(name="Accept-Language",required = false) Locale localeReq,final @Validated @RequestBody ClientDtoRequest request) {
-		System.out.println("-> "+ localeReq);
+	public ResponseEntity<ClientDtoResponse> saveWithPassword(final @Validated @RequestBody ClientDtoRequest request) {
 		ClientIntDtoRequest clientRequest =  modelMapper.map(request, ClientIntDtoRequest.class);
 		
 		ClientIntDtoResponse clientResponse = service.save(clientRequest);

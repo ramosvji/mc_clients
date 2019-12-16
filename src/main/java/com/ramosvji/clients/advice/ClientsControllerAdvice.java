@@ -28,7 +28,6 @@ public class ClientsControllerAdvice {
 	@ExceptionHandler({MethodArgumentNotValidException.class})
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public BadRequestResponse getBadRequestResponse(MethodArgumentNotValidException e) {
-		System.out.println("hola "+ Locale.getDefault());
 		BadRequestResponse response = new BadRequestResponse(); 
 		List<MessageDto> messages = new ArrayList<MessageDto>();
 	
