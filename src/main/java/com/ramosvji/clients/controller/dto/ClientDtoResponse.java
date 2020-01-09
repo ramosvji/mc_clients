@@ -13,6 +13,8 @@ public class ClientDtoResponse implements Serializable {
 	private String username;
 	private List<RoleDto> roles;
 	
+	private String port;
+	
 	public String getId() {
 		return id;
 	}
@@ -49,4 +51,11 @@ public class ClientDtoResponse implements Serializable {
 	public void setRoles(List<RoleDto> roles) {
 		this.roles = roles;
 	}
+	public String getPort() {
+		return port;
+	}
+	public void setPort(String port) {
+		this.port = port;
+	}
+	
 }

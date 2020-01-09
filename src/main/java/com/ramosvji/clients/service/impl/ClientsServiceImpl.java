@@ -4,7 +4,7 @@ import java.util.function.Function;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,7 @@ import com.ramosvji.clients.service.dto.ClientIntDtoRequest;
 import com.ramosvji.clients.service.dto.ClientIntDtoResponse;
 import com.ramosvji.clients.service.mapper.ClientMapper;
 
+@RefreshScope
 @Service
 @Transactional
 public class ClientsServiceImpl implements ClientsService {

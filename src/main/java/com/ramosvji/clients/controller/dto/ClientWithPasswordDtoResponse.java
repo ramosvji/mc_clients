@@ -12,5 +12,5 @@ public class ClientWithPasswordDtoResponse extends ClientDtoResponse {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 }

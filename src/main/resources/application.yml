@@ -1,0 +1,13 @@
+info:
+  app:
+    author: Ignacio Ramos
+    name: mc_clients
+server:
+  port: ${port:0}
+spring:
+  application:
+    name: mc-clients
+  data:
+    mongodb:
+      database: diciembre
+      uri: mongodb+srv://ramos10:j9Po6zMuZ0A9cb1F@cluster0-dkhur.mongodb.net/diciembre?retryWrites=true&w=majority
